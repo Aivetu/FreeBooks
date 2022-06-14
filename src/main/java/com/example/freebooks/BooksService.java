@@ -19,11 +19,11 @@ public class BooksService {
         return booksRepo.findAll();
     }
 
-    public Books retrieveBookById(int id) throws Exception {
+    public Books retrieveBookById(int id) throws RuntimeException {
         Optional<Books> optional = booksRepo.findById(id);
         if (optional.isPresent())
             return optional.get();
-        else throw new IllegalStateException("Id doesn't exist");
+        else throw new BooksException("Id doesn't exist");
 
 
     }
@@ -36,7 +36,7 @@ public class BooksService {
         Optional<Books> optional = booksRepo.findById(id);
         if (optional.isPresent())
             optional.get();
-        else throw new IllegalStateException("Id doesn't exist");
+        else throw new BooksException("Id doesn't exist");
         return booksRepo.deleteById(id);
 
     }
@@ -45,7 +45,7 @@ public class BooksService {
         Optional<Books> books1 = booksRepo.findById(books.getId());
         if (books1.isPresent())
             books1.get();
-        else throw new IllegalStateException("Id does not exist");
+        else throw new BooksException("Id does not exist");
 
         Books newBook = new Books();
         newBook.setAuthor(books.getAuthor());
