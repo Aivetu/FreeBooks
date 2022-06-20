@@ -19,7 +19,7 @@ public class BooksService {
         return booksRepo.findAll();
     }
 
-    public Books retrieveBookById(int id) throws RuntimeException {
+    public Books retrieveBookById(int id) {
         Optional<Books> optional = booksRepo.findById(id);
         if (optional.isPresent())
             return optional.get();
